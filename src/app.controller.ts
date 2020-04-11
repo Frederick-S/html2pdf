@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Header, Res } from '@nestjs/common'
+import { Controller, Post, Body, Header, Res, UsePipes, ValidationPipe } from '@nestjs/common'
 import PdfGeneratorDto from './dto/pdf-generator-dto'
 import * as puppeteer from 'puppeteer'
 
@@ -6,6 +6,7 @@ import * as puppeteer from 'puppeteer'
 export class AppController {
   @Post("/pdfs")
   @Header('Content-Type', 'application/pdf')
+  @UsePipes(new ValidationPipe({ transform: true }))
   async generatePdf(@Body() pdfGeneratorDto: PdfGeneratorDto, @Res() response) {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
