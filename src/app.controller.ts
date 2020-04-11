@@ -9,7 +9,9 @@ export class AppController {
   @Header('Content-Type', 'application/pdf')
   @UsePipes(new ValidationPipe({ transform: true }))
   async generatePdf(@Body() pdfGeneratorDto: PdfGeneratorDto, @Res() response) {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox']
+    })
     const page = await browser.newPage()
     await page.setContent(pdfGeneratorDto.html)
     const buffer = await page.pdf({
