@@ -13,7 +13,7 @@ export class AppController {
     const page = await browser.newPage()
     await page.setContent(pdfGeneratorDto.html)
     const buffer = await page.pdf({
-      format: <PDFFormat>pdfGeneratorDto.format || 'A4'
+      format: pdfGeneratorDto.format as PDFFormat || 'A4'
     })
     await browser.close()
 
