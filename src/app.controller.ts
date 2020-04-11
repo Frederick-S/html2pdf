@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Header, Res, UsePipes, ValidationPipe } from '@nestjs/common'
 import PdfGeneratorDto from './dto/pdf-generator-dto'
 import * as puppeteer from 'puppeteer'
+import { PDFFormat } from 'puppeteer'
 
 @Controller()
 export class AppController {
@@ -11,7 +12,9 @@ export class AppController {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.setContent(pdfGeneratorDto.html)
-    const buffer = await page.pdf()
+    const buffer = await page.pdf({
+      format: <PDFFormat>pdfGeneratorDto.format || 'A4'
+    })
     await browser.close()
 
     response.set({
