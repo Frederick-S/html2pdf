@@ -25,7 +25,7 @@ export class AppController {
     await browser.close()
 
     response.set({
-        'Content-Disposition': `attachment filename=${new Date().getTime()}.pdf`
+        'Content-Disposition': `attachment filename="${new Date().getTime()}.pdf"`
     })
     response.send(buffer)
   }
