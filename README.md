@@ -13,5 +13,10 @@ Content-Type: application/json
 }
 ```
 
+## Getting started
+```
+docker run -p 3000:3000 xiaodanmao/html2pdf
+```
+
 ## License
 [MIT](LICENSE)
