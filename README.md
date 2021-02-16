@@ -8,7 +8,7 @@ Host: host
 Content-Type: application/json
 
 {
-	"html": "html",
+	"html": "<h1>Hello, World!</h1>",
 	"format": "A4"
 }
 ```
